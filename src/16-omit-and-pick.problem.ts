@@ -11,6 +11,8 @@ interface User {
  * firstName and lastName properties of User?
  */
 
-type MyType = unknown;
+type MyType = {
+  [Property in keyof User as Exclude<Property, "id">]: User[Property];
+};
 
 type tests = [Expect<Equal<MyType, { firstName: string; lastName: string }>>];
