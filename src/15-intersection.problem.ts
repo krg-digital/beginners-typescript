@@ -1,3 +1,5 @@
+import { UnionToIntersection } from "./helpers/type-utils";
+
 interface User {
   id: string;
   firstName: string;
@@ -10,11 +12,15 @@ interface Post {
   body: string;
 }
 
+interface UserAndPosts extends User {
+  posts: Array<Post>;
+}
+
 /**
  * How do we type this return statement so it's both
  * User AND { posts: Post[] }
  */
-export const getDefaultUserAndPosts = (): unknown => {
+export const getDefaultUserAndPosts = (): UserAndPosts => {
   return {
     id: "1",
     firstName: "Matt",
